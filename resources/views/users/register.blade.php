@@ -39,12 +39,11 @@
             $('#signup').on('submit', function(e){
                 e.preventDefault();
                 let formData = $(this).serialize();
-                let url = '{{ route("user.store") }}';
+                let url = '{{route("user.store") }}';
                 
                 $.ajax({
                     url: url, 
                     method: 'POST',
-
                     data: formData,
                     success: function(response) {
                         
@@ -54,9 +53,7 @@
                         console.error('Response text:', xhr.responseText);
 
                     },
-                });
-  
-                
+                }); 
             });
 
         })
