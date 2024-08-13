@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 class CustomersController extends Controller
 {
     public function index(){
-        return ('you created customer');
+        $customer=Customer::all();
+
+        return view('customers.index',compact('customer'));
     }
 
-    public function create(){
-        return view('customers.create');
-    }
+  
 
     public function store(Request $reques){
         $data=$reques->validate([
@@ -22,7 +22,21 @@ class CustomersController extends Controller
             'phone'=>'required'
         ]);
         Customer::create($data);
-        return redirect()->route('customers')->with('success', 'customer create successfully.');
+    }
+
+    public function edit($id){
+        $customer=Customer::findOrFail($id);
+
+    }
+
+    public function update(Request $reques){
+        $data=$reques->validate([
+            'fullname'=>'required',
+            'email'=>'required',
+            'phone'=>'required',
+        ]);
+
+        $customer->update($data);
 
 
     }

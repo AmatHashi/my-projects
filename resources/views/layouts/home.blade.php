@@ -138,7 +138,7 @@
   
     <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
 <div class="product-item bg-light mb-4">
-    <div class="product-img position-relative overflow-hidden" style="height:300px">
+    <div class="product-img position-relative overflow-hidden" style="height:260px">
         <img class="img-fluid w-100" src="{{ asset('storage/' . $row->image) }}" alt="">
         <div class="product-action">
             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
@@ -206,7 +206,7 @@
 
         <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
             <div class="product-item bg-light mb-4">
-                <div class="product-img position-relative overflow-hidden" style="height:300px">
+                <div class="product-img position-relative overflow-hidden" style="height:260px">
                     <img class="img-fluid w-100" src="{{ asset('storage/' . $row->image) }}" alt="" height="100">
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>

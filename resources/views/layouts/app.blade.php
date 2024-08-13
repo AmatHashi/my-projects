@@ -32,7 +32,7 @@
                 <a href="{{ route('products') }}" class="list-group-item list-group-item-action bg-light fs-5">Products</a>
                 <a href="{{ route('categories') }}" class="list-group-item list-group-item-action bg-light fs-5">Category</a>
                 <a href="{{ route('orders') }}" class="list-group-item list-group-item-action bg-light fs-5">Orders</a>
-                {{-- <a href="{{route('customers.create')}}" class="list-group-item list-group-item-action bg-light fs-5">Customers</a> --}}
+                <a href="{{route('customers')}}" class="list-group-item list-group-item-action bg-light fs-5">Customers</a>
             </div>
         </div>
 

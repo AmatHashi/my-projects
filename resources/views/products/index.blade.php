@@ -1,13 +1,20 @@
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
+</head>
+<body>
+    
 @extends('layouts.app')
 @section('content')
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <input type="text" id="search" placeholder="Search products">         
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" data-bs-whatever="@mdo">Create New Product</button>
     </div>
     @if(session('success'))
@@ -22,7 +29,7 @@
         </div>
     @endif
 
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" id="tbl">
         <thead class="thead-dark">
             <tr>
                 <th>No</th>
@@ -33,11 +40,11 @@
                 <th>Image</th>
                 <th>Actions</th>
             </tr>
-        </thead>
+         </thead>
         <tbody id="product-list">
             @php
             $counter = 1;
-           @endphp
+            @endphp
             @foreach($products as $product)
                 <tr class="product-item">
                     <td> {{ $counter++ }} </td>
@@ -126,7 +133,12 @@
 @endsection
 
 @section('page_js')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
+
+</script>
 <script>
+    let table = new DataTable('#tbl');
     const updatefn = (id) => {
         let url = "{{ route('product.edit', ':id') }}";
         url = url.replace(':id', id);
@@ -144,6 +156,8 @@
             .fail((error) => {
                 console.error('Error fetching data:', error);
             });
+            $('#submitButton').text('update');
+
     };
     $("#productModal").on("hidden.bs.modal",function(){
         $("#name").val("");
@@ -152,4 +166,6 @@
         $("#productForm").attr("action", "{{ route('products') }}");
     });
 </script>
-@endsection
+@endsection 
+</body>
+</html>

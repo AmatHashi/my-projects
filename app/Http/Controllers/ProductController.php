@@ -66,16 +66,14 @@ class ProductController extends Controller
         return view('products.update',compact('product'));
     }
 
-   
-   
     public function update(Request $request, $id)
    {
     $validatedData = $request->validate([
         'name' => 'required',
         'quantity' => 'required',
-        // 'discription' => 'required',
+        'discription' => 'required',
         'price' => 'required',
-        // 'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif',
+        'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif',
     ]);
 
     $product = Product::findOrFail($id);
@@ -114,6 +112,14 @@ class ProductController extends Controller
         return view('layouts.ItemDetail',compact('product')); 
     }
    
+    public function shop(){
+        $product=Product::all();
+        return view('layouts.shop',compact('product'));
+    }
+    public function checkout(){
+        $product=Product::all();
+        return view('layouts.checkout',compact('product'));
+    }
 
     // public function cart(Request $request)
     // {

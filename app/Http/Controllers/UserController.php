@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function index(){
 
-
     }
     public function createForm(){
         return view('users.register');
-
     }
     public function register(Request $request){
         $data = $request->validate([
@@ -34,8 +33,30 @@ class UserController extends Controller
     
         return response()->json([
             'message' => 'User registered successfully!',
-            'user' => $user,
         ]);
     
+    }
+
+    public function loginForm(){
+        return view('users.login');
+    }
+    public function login(Request $request)
+    {
+        $data = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            return response()->json([
+                'message' => 'Login successful!',
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Invalid credentials!',
+        ], 401);
     }
 }

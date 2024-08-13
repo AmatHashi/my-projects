@@ -15,9 +15,7 @@ class CartController extends Controller
         return view ('layouts.cart',compact('carts'));
     }
 
-    
-    
-    
+
     public function addToCart(Request $request)
     {
         $data = $request->validate([
@@ -46,8 +44,8 @@ class CartController extends Controller
             return response()->json(['success' => false, 'message' => 'An error occurred'], 500);
         }
     }
-    public function delete($id) {
-        $delete = Cart::where('id', $id)->delete();
+       public function delete($id) {
+         $delete = Cart::where('id', $id)->delete();
         
         return response()->json([
             'success' => true,
@@ -55,8 +53,5 @@ class CartController extends Controller
         ]);
     }
     
-    
-    
-    
-    
+   
 }

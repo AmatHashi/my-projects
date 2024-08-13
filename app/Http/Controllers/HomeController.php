@@ -16,7 +16,7 @@ class HomeController extends Controller
         return view('layouts.home',compact('products','category')); 
     }
     function contact(){
-        return view('layouts.cantact')
+        return view('layouts.cantact');
     }
   
 }

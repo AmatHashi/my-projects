@@ -31,7 +31,7 @@
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner bg-light">
                         <div class="carousel-item active">
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-thumbnail rounded" style="width: 100px; height: 90px; border-radius: 50%;">
+                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name}}" class="img-thumbnail rounded" style="width: 100px; height: 90px; border-radius: 50%;">
                         </div> 
                     </div>
                     <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
@@ -160,8 +160,7 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
                             <h4 class="mb-3">Product Description</h4>
-                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                            <p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
+                            <p>{{$product->discription}}</p>
                         </div>
                         <div class="tab-pane fade" id="tab-pane-2">
                             <h4 class="mb-3">Additional Information</h4>
@@ -279,7 +278,7 @@
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">Product Name</a>
+                            <a class="h6 text-decoration-none text-truncate" href=""></a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
                                 <h5></h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
                             </div>

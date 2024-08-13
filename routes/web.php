@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\shopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController ;
 use App\Http\Controllers\orderController;
@@ -25,11 +26,11 @@ Route::get('/show/{id}', [ProductController::class, 'show'])->name('product.show
 Route::get('/show/{id}', [ProductController::class, 'detail'])->name('product.detail');
 Route::get('/delete/{id}',[ProductController::class, 'delete'])->name('product.delete');
 Route::get('/itemcart', [ProductController::class,'cart'])->name('product.itemscart');
+Route::get('/shop', [ProductController::class,'shop'])->name('shop');
+Route::get('/checkout', [ProductController::class,'checkout'])->name('checkout');
 
-//customers
-Route::get('/customers',[CustomersController::class, 'index'])->name('customers');
-Route::get('/create',[CustomersController::class,'create'])->name('customers.create');
-Route::post('/create',[CustomersController::class, 'store'])->name('customers.store');
+
+
 
 //orders
 Route::get('/orders',[orderController::class, 'index'])->name('orders');
@@ -53,7 +54,17 @@ Route::delete('/delete/{id}', [CartController::class, 'delete'])->name('cart.del
 //users
 Route::get('/signup', [UserController::class, 'createForm'])->name('user.create');
 Route::post('/signup', [UserController::class, 'register'])->name('user.store');
+Route::get('/login', [UserController::class, 'loginForm'])->name('user.loginform');
+Route::post('/login', [UserController::class, 'login'])->name('user.login');
 
+
+
+//customers
+Route::get('/customers',[CustomersController::class, 'index'])->name('customers');
+Route::post('/create',[CustomersController::class, 'store'])->name('customers.store');
+Route::get('/edit{id}',[CustomersController::class, 'edit'])->name('customer.edit');
+Route::get('/edit{id}', [CustomersController::class, 'edit'])->name('edit');
+Route::post('/update', [CustomersController::class, 'update'])->name('customer.update');
 
 
 include('category.php');
