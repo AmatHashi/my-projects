@@ -11,20 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orderDetails', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');         
-            $table->unsignedBigInteger('product_id');         
-            $table->integer('qty');        
-            $table->decimal('unitprice', 10, 2);        
-            $table->decimal('total', 10, 2);        
+            $table->string('name');  
+            $table->string('email');  
+            $table->string('subject');  
+            $table->string('message');  
             $table->timestamps();
         });
+
     }
 
-    
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        
+        //
     }
 };

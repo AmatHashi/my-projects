@@ -14,7 +14,7 @@ class Favorate extends Model
     public $fillable=[
         'product_id'
     ];
-    public function product()
+    public function products()
     {
         return $this->belongsTo(Product::class);
     }

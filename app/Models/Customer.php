@@ -11,16 +11,17 @@ class Customer extends Model
 
 
     protected $fillable = [
-        'fullname',
+        'fname',
+        'lname',
         'phone',
         'email',
+        'address',
     ];
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class,'user_id');
-    // }
-
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'cus_id');
+    }
  
 
     use HasFactory;

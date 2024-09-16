@@ -18,11 +18,15 @@ class Product extends Model
         'cat_id',
         'name',
         'image',
-        'quantity',
         'discription',
-        'price'
+        'price',
+        'sizes',
+        'colors'
     ];
-  
+    protected $casts = [
+        'sizes' => 'array',
+        'colors' => 'array',
+    ];
 
     public function mycat (){
         return $this->belongsTo(Category::class,'cat_id');

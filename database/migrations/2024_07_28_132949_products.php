@@ -14,9 +14,10 @@ return new class extends Migration
             $table->unsignedBigInteger('cat_id');
             $table->string('name');
             $table->string('image')->nullable();
-            $table->string('quantity');
             $table->text('discription');
-            $table->decimal('price');
+            $table->text('sizes')->nullable(); 
+            $table->text('colors')->nullable(); 
+            $table->float('price');
             $table->timestamps();
         });
     }

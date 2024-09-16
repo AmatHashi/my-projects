@@ -9,13 +9,16 @@ return new class extends Migration
    
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('details', function (Blueprint $table) {
+
             $table->id();
-            $table->unsignedBigInteger('cus_id');         
-            $table->string('status');
-            $table->decimal('total', 10, 2);        
+            $table->unsignedBigInteger('order_id'); 
+            $table->unsignedBigInteger('product_id'); 
+            $table->integer('qty'); 
+            $table->integer('price'); 
+            $table->decimal('total', 10, 2); 
             $table->timestamps();
-        });
+            });
     }
 
     /**
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        
     }
 };

@@ -4,12 +4,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
 @extends('layouts.indexFront')
-
 @section('layoutbody')
 
 
 
-    <!-- Breadcrumb Start -->
+    <!-- Breadcrum b Start -->
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-12">
@@ -21,18 +20,22 @@
             </div>
         </div>
     </div>
-    <!-- Breadcrumb End -->
 
-
+     @php
+      $images = json_decode($product->image, true);
+     @endphp
     <!-- Shop Detail Start -->
     <div class="container-fluid pb-5">
         <div class="row px-xl-5">
             <div class="col-lg-5 mb-30">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner bg-light">
-                        <div class="carousel-item active">
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name}}" class="img-thumbnail rounded" style="width: 100px; height: 90px; border-radius: 50%;">
-                        </div> 
+                        @foreach ($images as $index => $image)
+                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" style="width: 400px;height:400px">
+                    <img class="w-100 h-100" src="{{ asset('storage/' . $image) }}" alt="Product Image {{ $index + 1 }}" >
+                </div>
+                     @endforeach
+                        
                     </div>
                     <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                         <i class="fa fa-2x fa-angle-left text-dark"></i>
@@ -56,11 +59,9 @@
                         </div>
                         <small class="pt-1">(99 Reviews)</small>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
-                    <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
-                        clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
-                        Nonumy</p>
-                    <div class="d-flex mb-3">
+                    <h3 class="font-weight-semi-bold mb-4">${{$product->price}}</h3>
+                    <p>{{$product->discription}}</p>
+                    {{-- <div class="d-flex mb-3">
                         <strong class="text-dark mr-3">Sizes:</strong>
                         <form>
                             <div class="custom-control custom-radio custom-control-inline">
@@ -84,8 +85,8 @@
                                 <label class="custom-control-label" for="size-5">XL</label>
                             </div>
                         </form>
-                    </div>
-                    <div class="d-flex mb-4">
+                    </div> --}}
+                    {{-- <div class="d-flex mb-4">
                         <strong class="text-dark mr-3">Colors:</strong>
                         <form>
                             <div class="custom-control custom-radio custom-control-inline">
@@ -109,7 +110,7 @@
                                 <label class="custom-control-label" for="color-5">Green</label>
                             </div>
                         </form>
-                    </div>
+                    </div> --}}
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">
@@ -124,7 +125,6 @@
                                 </button>
                             </div>
                         </div>
-                        {{-- here is button --}}
                         <button id="add-to-cart-btn" data-product-id="{{ $product->id }}" class="btn btn-primary px-3">
                             <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
                         </button>
@@ -264,12 +264,16 @@
     <div class="container-fluid py-5">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">You May Also Like</span></h2>
         <div class="row px-xl-5">
-            {{-- @foreach ($all as $row) --}}
             <div class="col">
                 <div class="owl-carousel related-carousel">
+                    @foreach ($relatedProducts as $row)
                     <div class="product-item bg-light">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
+                        <div class="product-img position-relative overflow-hidden" style="height:280px">
+                            @php
+                            $images = json_decode($row->image, true); 
+                            $firstImage = !empty($images) && isset($images[0]) ? $images[0] : 'default_image.jpg';
+                            @endphp
+                            <img class="img-fluid w-100" src="{{ asset('storage/' . $firstImage) }}" alt="Product Image">                      
                             <div class="product-action">
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
@@ -278,9 +282,9 @@
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href=""></a>
+                            <a class="h6 text-decoration-none text-truncate" href="">{{ $row->name }}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5></h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                <h5>{{ $row->price }}</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <small class="fa fa-star text-primary mr-1"></small>
@@ -292,15 +296,14 @@
                             </div>
                         </div>
                     </div>
-                   
+                    @endforeach
                 </div>
             </div>
-            {{-- @endforeach --}}
         </div>
     </div>
+    
     <!-- Products End -->
-
-
+    
 @endsection
 
 

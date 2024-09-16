@@ -10,19 +10,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class OrderDetail extends Model
 {
     use HasFactory;
+    protected $table = 'details'; 
+
     public $fillable=[
         'order_id',
         'product_id',
         'qty',
-        'unitprice',
+        'price',
         'total'
     ];
 
        public function order()
     {
-        return $this->belongsTo(Order::class,'order_id');
+        return $this->belongsTo(Order::class);
     }
-    {
-        return $this->belongsTo(Product::class);
-    }
+    public function product()
+{
+    return $this->belongsTo(Product::class);
+}
 }

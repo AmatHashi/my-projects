@@ -3,8 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Order;
 use App\Models\Product;
-use App\Models\Customer;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,14 +15,14 @@ class User extends Authenticatable
     use HasFactory;
 
     public $fillable=[
-        'fullname',
         'username',
         'email',
-        'password'
+        'password',
+        'addres'
     ];
     public function customers()
     {
-        return $this->hasMany(Customer::class, 'user_id');
+        return $this->hasMany(Order::class, 'user_id');
     }
 
     public function products()
