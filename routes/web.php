@@ -12,8 +12,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\orderDetailController;
 
-Route::get('/create', [HomeController::class, 'createform'])->name('slideshow.create');
-Route::post('/store', [HomeController::class, 'store'])->name('slideshow.store');
+
 
 Route::get('/home', [HomeController::class,'index'])->name('dashboard');
 Route::get('/contact', [HomeController::class,'contact'])->name('contact');
@@ -21,9 +20,9 @@ Route::post('/store', [HomeController::class,'createMessage'])->name('store');
 Route::get('/about', [HomeController::class,'about'])->name('about');
 Route::get('/collection', [HomeController::class,'collection'])->name('collection');
 Route::get('/contacts', [HomeController::class, 'findAllContact'])->name('all.contact');
+Route::get('/create', [HomeController::class, 'createform'])->name('slideshow.create');
+Route::post('/store', [HomeController::class, 'store'])->name('slideshow.store');
 
-// Route::group(['middleware' => 'auth'], function () {
-// });
 
 //products
 Route::prefix('products')->name('products.')->group(function () {
@@ -32,21 +31,24 @@ Route::prefix('products')->name('products.')->group(function () {
     Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('edit'); 
     Route::post('/update', [ProductController::class, 'update'])->name('update'); 
     Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
-    Route::get('/search', [ProductController::class, 'search'])->name('search');
-    Route::get('/filterPrice', [ProductController::class, 'SelectedPrices'])->name('filterByPrice');
-    Route::get('/show/{id}', [ProductController::class, 'detail'])->name('show');
-    // Route::get('/show/{id}', [ProductController::class, 'detail'])->name('detail');
-    Route::get('/products/load-more', [ProductController::class, 'loadMore'])->name('products.loadMore');
 
 });
+//categories
+Route::prefix('category')->name('category.')->group(function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('index');
+   Route::post('store', [CategoryController::class, 'store'])->name('store');
+   Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('edit');
+   Route::post('update', [CategoryController::class,'update'])->name('update');
+   Route::get('delete/{id}',[CategoryController::class, 'delete'])->name('delete');
+});
+//products
 Route::get('/filterby', [ProductController::class, 'filterProducts'])->name('filter.products');
-
-// Route::match(['get', 'post'], '/update/{id}', [ProductController::class, 'update'])->name('products.update');
-// Route::get('/show/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/show/{id}', [ProductController::class, 'detail'])->name('show');
+Route::get('/products/load-more', [ProductController::class, 'loadMore'])->name('products.loadMore');
+Route::get('/filterPrice', [ProductController::class, 'SelectedPrices'])->name('filterByPrice');
+Route::get('/search', [ProductController::class, 'search'])->name('search');
 Route::get('/itemcart', [ProductController::class,'cart'])->name('product.itemscart');
 Route::get('/shop/{id?}', [ProductController::class,'shop'])->name('shop');
-
-
 //orders
 Route::get('/checkout', [OrderController::class, 'get'])->name('checkout');
 Route::post('/orders',[orderController::class, 'checkout'])->name('orders.create');
@@ -56,8 +58,6 @@ Route::get('/orders', [orderController::class, 'index'])->name('orders.all');
 Route::get('/cart', [CartController::class, 'index'])->name('product.cart');
 Route::post('/addcart', [CartController::class, 'addToCart'])->name('cart.sore');
 Route::delete('/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
-
-
 Route::prefix('cart')->group(function () {
  Route::post('/update', [CartController::class, 'update'])->name('cart.update');
 });
@@ -71,21 +71,21 @@ Route::post('/login',  [UserController::class, 'login'])->name('user.login');
 Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
 Route::put('/update{id}',[UserController::class], 'update')->name('user.modify');
 
-//customers
-Route::get('/customers',[CustomersController::class, 'index'])->name('customers');
-Route::post('/create',[CustomersController::class, 'store'])->name('customers.store');
-Route::get('/edit{id}',[CustomersController::class, 'edit'])->name('customer.edit');
-Route::post('/update', [CustomersController::class, 'update'])->name('customer.update');
+// Route::get('/show/{id}', [ProductController::class, 'detail'])->name('detail');
+// Route::match(['get', 'post'], '/update/{id}', [ProductController::class, 'update'])->name('products.update');
+// Route::get('/show/{id}', [ProductController::class, 'show'])->name('product.show');
+// Route::group(['middleware' => 'auth'], function () {
+// });
 
 
 
-Route::prefix('category')->name('category.')->group(function () {
-     Route::get('/', [CategoryController::class, 'index'])->name('index');
-    Route::post('store', [CategoryController::class, 'store'])->name('store');
-    Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('edit');
-    Route::post('update', [CategoryController::class,'update'])->name('update');
-    Route::get('delete/{id}',[CategoryController::class, 'delete'])->name('delete');
-});
+
+
+
+
+
+
+
 
 
 

@@ -56,12 +56,12 @@ $categories = Category::all();
                                 $firstImage = !empty($images) && isset($images[0]) ? $images[0] : 'default_image.jpg';
                                @endphp
                             <img class="img-fluid w-100" src="{{ asset('storage/' . $firstImage) }}" alt="Product Image">                         
-                                   <div class="product-action">
+                                   {{-- <div class="product-action">
                                     <a class="btn btn-outline-dark btn-square" href="{{ route('product.cart') }}"><i class="fa fa-shopping-cart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href="#"><i class="far fa-heart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-sync-alt"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-search"></i></a>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="text-center py-4">
                                 <a href="{{ route('products.show', $product->id) }}" class="h6 text-decoration-none text-truncate">{{ $product->name }}</a>
