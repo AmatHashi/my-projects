@@ -210,49 +210,48 @@ class ProductController extends Controller
 
     
    
-   public function filterProducts(Request $request)
-   {
-       $query = Product::query();
-   
-       // Handle category filter
-       if ($request->has('category') && $request->input('category') !== '') {
-           $categoryId = $request->input('category');
-           $query->where('cat_id', $categoryId);
-       }
-   
-       // Handle price filter
-       if ($request->has('price') && $request->input('price') !== '') {
-           $priceRange = explode('-', $request->input('price'));
-           if (count($priceRange) === 2) {
-               $query->whereBetween('price', [$priceRange[0], $priceRange[1]]);
-           }
-       }
-   
-       // If no filters are selected, return all products
-       if (!$request->has('category') && !$request->has('price')) {
-           return redirect()->route('shop'); // Redirect to shop route to show all products
-       }
-   
-       $products = $query->get();
-   
-       // Handle AJAX response
-       if ($request->ajax()) {
-           if ($products->isEmpty()) {
-               return response()->json(['html' => '<div class="col-12"><p>No products found.</p></div>']);
-           }
-   
-           return response()->json([
-               'html' => view('partials.products', ['products' => $products])->render()
-           ]);
-       }
-   }
-   
+   public function filterProducts(Request $request){
+    
+    $query = Product::query();
+
+    // Handle category filter
+    if ($request->has('category') && $request->input('category') !== '') {
+        $categoryId = $request->input('category');
+        $query->where('cat_id', $categoryId);
+    }
+
+    // Handle price filter
+    if ($request->has('price') && $request->input('price') !== '') {
+        $priceRange = explode('-', $request->input('price'));
+        if (count($priceRange) === 2) {
+            $query->whereBetween('price', [$priceRange[0], $priceRange[1]]);
+        }
+    }
+
+    $products = $query->get();
+
+    if ($request->ajax()) {
+        return response()->json([
+            'html' => view('partials.products', ['products' => $products])->render()
+        ]);
+    }
+
+    if ($products->isEmpty()) {
+        return response()->json(['html' => '<div class="col-12"><p>No products found.</p></div>']);
+    }
+
+    return response()->json([
+        'html' => view('partials.products', ['products' => $products])->render()
+    ]);
+}
+}
+
    
    
    
 
 
-  }
+  
 //  public function update(Request $request, $id)
 //     {
 //         $user = User::find($id);

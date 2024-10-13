@@ -265,7 +265,7 @@
 
 
 
-    {{-- me amal --}}
+    {{-- inta isbedelaysa --}}
     @yield('layoutbody')
     <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div class="row px-xl-5 pt-5">

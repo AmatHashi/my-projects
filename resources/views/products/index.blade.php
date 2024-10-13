@@ -15,27 +15,22 @@
             border-collapse: collapse;
             width: 100%;
         }
-
         table th, table td {
             border-bottom: 1px solid #dee2e6;
             padding: 12px;
         }
-
         table thead th {
             border-bottom: 2px solid #007bff;
             background-color: #f8f9fa;
             color: #007bff;
         }
-
         .img-thumbnail {
             border-radius: 50%;
         }
-
         .btn-custom {
             border-radius: 60px;
             padding: 8px 16px;
         }
-
         .btn-custom:hover {
             opacity: 0.8;
         }
@@ -307,10 +302,10 @@
                 url: 'products/edit/' + productId,
                 type: 'GET',
                 success: function(response) {
-                    $('#prodId').val(response.id);
-                    $('#name').val(response.name);
-                    $('#discription').val(response.discription); 
-                    $('#price').val(response.price);
+                    $('#updateModal #prodId').val(response.id);
+                    $('#updateModal #name').val(response.name);
+                    $('#updateModal #discription').val(response.discription); 
+                    $('#updateModal #price').val(response.price);
                     $('#updateModal').modal('show'); 
                 },
                 error: function(xhr) {
@@ -419,11 +414,9 @@
 }
 
 $('#image').on('change', previewImage);
-
-    
         $('#image').on('change', previewImage);
     });
-    </script>
+    </script> 
     
 
 </body>
